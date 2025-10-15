@@ -1,3 +1,11 @@
-export default function Home() {
-  return <div className="">Hello world</div>;
+import prisma from "@/lib/db";
+
+export default async function Home() {
+  const users = await prisma.user.findMany();
+
+  return (
+    <div className="min-h-screen min-w-screen flex items-center justify-center">
+      {JSON.stringify(users, null, 2)}
+    </div>
+  );
 }
